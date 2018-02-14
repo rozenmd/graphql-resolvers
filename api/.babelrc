@@ -1,0 +1,9 @@
+{
+  "presets": ["es2015"],
+  "plugins": [
+    "lodash",
+    "inline-import",
+    "transform-class-properties",
+    "transform-object-rest-spread"
+  ]
+}

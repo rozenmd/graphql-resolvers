@@ -1,0 +1,31 @@
+{
+  "name": "graphql-resolvers-generic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env BABEL_DISABLE_CACHE=1 node -r babel-register local.js",
+    "build":
+      "cross-env BABEL_DISABLE_CACHE=1 webpack --config=webpack.config.babel.js --env=production"
+  },
+  "author": "@MxRozen",
+  "dependencies": {
+    "aws-sdk": "^2.186.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.1",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-inline-import": "^2.0.6",
+    "babel-plugin-lodash": "^3.3.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-app": "^3.1.1",
+    "babel-runtime": "6.26.0",
+    "cors": "^2.8.4",
+    "cross-env": "^5.1.3",
+    "webpack": "^3.10.0",
+    "zip-webpack-plugin": "^2.1.0"
+  }
+}
