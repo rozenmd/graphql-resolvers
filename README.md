@@ -20,7 +20,7 @@ Pre-requisites:
 Setup steps:
 
 1. Edit `infrastructure/vars.tf`, set up all of your variables
-2. Edit `infrastructure/backend.tf`, copy your Domain name to bucket, and key, and copy your aws_region to region (variables don't work in this one file)
+2. Edit `infrastructure/backend.tf`, copy your Domain name to bucket and key, and copy your aws_region to region (variables don't work in this one file)
 3. Run `npm install` or `yarn` in `/api`, then `npm run build`
 4. Change directory to `/infrastructure`, then run `terraform init` and `terraform plan` to see the new infrastructure to be created. If you're happy with the changes, run `terraform apply`
 5. _OPTIONAL_: To tear down the infrastructure terraform has created, run `terraform destroy`
