@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env BABEL_DISABLE_CACHE=1 node -r babel-register local.js",
-    "build":
-      "cross-env BABEL_DISABLE_CACHE=1 webpack --config=webpack.config.babel.js --env=production"
+    "build": "cross-env BABEL_DISABLE_CACHE=1 webpack --config=webpack.config.babel.js --env=production"
   },
   "author": "@MxRozen",
   "dependencies": {
@@ -25,6 +24,9 @@
     "babel-runtime": "6.26.0",
     "cors": "^2.8.4",
     "cross-env": "^5.1.3",
+    "graphql": "^0.13.1",
+    "graphql-tag": "^2.7.3",
+    "graphql-tools": "^2.21.0",
     "webpack": "^3.10.0",
     "zip-webpack-plugin": "^2.1.0"
   }
