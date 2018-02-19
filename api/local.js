@@ -1,6 +1,9 @@
 import cors from 'cors'
 import express from 'express'
-
+// commented out parts are to enable you to run your React App side by side with GraphQL
+// import webpack from 'webpack'
+// import webpackDevMiddleware from 'webpack-dev-middleware'
+// import configFactory from './client/webpack.config.babel.js'
 import schema from './schema'
 import { json } from 'body-parser'
 import { graphql } from 'graphql'
@@ -9,7 +12,12 @@ const PORT = process.env.PORT || 3001
 
 const app = express()
 
+// const config = configFactory()
+// const compiler = webpack(config)
+// const middleware = webpackDevMiddleware(compiler)
+
 app.use(cors())
+// app.use(middleware)
 
 app.post('/graphql', json(), (req, res) => {
   const { query, variables } = req.body
@@ -32,7 +40,6 @@ app.post('/graphql', json(), (req, res) => {
     })
 })
 
-// the following part is to be able to run your React App side by side with GraphQL
 // app.get('*', (req, res) => {
 //   res.set('Content-Type', 'text/html')
 //   res.send(

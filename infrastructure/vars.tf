@@ -1,5 +1,5 @@
 
-variable "name" { default = "" } #name of your service
+variable "name" { default = "" } #name of your service i.e maxrozen
 variable "aws_region" { default = "" } #i.e ap-southeast-2
 variable "site_url" {default = ""} # i.e maxrozen.com - NOTE - this assumes you already have your URL in Route 53!
 variable "comment" { default = "" } #i.e maxrozen.com

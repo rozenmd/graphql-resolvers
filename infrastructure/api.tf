@@ -31,27 +31,6 @@ resource "aws_api_gateway_integration" "graphql_path_integration" {
   uri                     = "arn:aws:apigateway:${var.aws_region}:lambda:path/2015-03-31/functions/${aws_lambda_function.graphql.arn}/invocations"
   content_handling        = "CONVERT_TO_TEXT"
 }
-resource "aws_api_gateway_integration_response" "graphql_path_integration_response" {
-   depends_on = ["aws_api_gateway_integration.graphql_path_integration"]
-   rest_api_id = "${aws_api_gateway_rest_api.site_api.id}"
-   resource_id = "${aws_api_gateway_resource.grapqhl_endpoint.id}"
-   http_method = "${aws_api_gateway_method.graphql_path_post.http_method}"
-   status_code = "${aws_api_gateway_method_response.200.status_code}"
-
-   response_templates = {
-       "application/json" = ""
-   }
-}
-
-resource "aws_api_gateway_method_response" "200" {
-  rest_api_id = "${aws_api_gateway_rest_api.site_api.id}"
-  resource_id = "${aws_api_gateway_resource.grapqhl_endpoint.id}"
-  http_method = "${aws_api_gateway_method.graphql_path_post.http_method}"
-  status_code = "200"
-  response_models = {
-         "application/json" = "Empty"
-  }
-}
 
 resource "aws_api_gateway_method" "graphql_post" {
   rest_api_id   = "${aws_api_gateway_rest_api.site_api.id}"

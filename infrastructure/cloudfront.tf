@@ -1,15 +1,15 @@
 resource "aws_cloudfront_distribution" "site" {
-#  origin {
-#    domain_name = "${var.site_url}.s3-website-${var.aws_region}.amazonaws.com"
-#    origin_id   = "s3"
-#
-#    custom_origin_config {
-#      http_port              = "80"
-#      https_port             = "443"
-#      origin_protocol_policy = "http-only"
-#      origin_ssl_protocols   = ["TLSv1", "TLSv1.1", "TLSv1.2"]
-#    }
-#  }
+  origin {
+    domain_name = "${var.site_url}.s3-website-${var.aws_region}.amazonaws.com"
+    origin_id   = "s3"
+
+    custom_origin_config {
+     http_port              = "80"
+     https_port             = "443"
+      origin_protocol_policy = "http-only"
+      origin_ssl_protocols   = ["TLSv1", "TLSv1.1", "TLSv1.2"]
+   }
+  }
 
   origin {
     origin_id = "api"
@@ -36,7 +36,7 @@ resource "aws_cloudfront_distribution" "site" {
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "api"
+    target_origin_id = "s3"
 
     forwarded_values {
       query_string = true
@@ -51,6 +51,7 @@ resource "aws_cloudfront_distribution" "site" {
     max_ttl                = 0
     default_ttl            = 0
   }
+
 
   cache_behavior {
     path_pattern           = "${var.graphql_endpoint}"

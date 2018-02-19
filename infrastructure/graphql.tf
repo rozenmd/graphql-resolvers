@@ -17,6 +17,8 @@ resource "aws_iam_role" "iam_graphql" {
 EOF
 }
 
+
+
 resource "aws_iam_role_policy" "iam_graphql_policy" {
   name = "iam_graphql_${var.name}_policy"
   role = "${aws_iam_role.iam_graphql.id}"
@@ -42,11 +44,6 @@ resource "aws_iam_role_policy" "iam_graphql_policy" {
 EOF
 }
 
-resource "aws_iam_role_policy_attachment" "browser_attach" {
-    role       = "${aws_iam_role.iam_graphql.name}"
-    policy_arn = "${aws_iam_policy.iam_graphql_policy.arn}"
-}
-
 resource "aws_lambda_permission" "iam_graphql_permission" {
   statement_id  = "AllowExecutionFromS3Bucket"
   action        = "lambda:InvokeFunction"
@@ -58,13 +55,14 @@ resource "aws_lambda_permission" "iam_graphql_permission" {
 resource "aws_lambda_function" "graphql" {
   depends_on = ["aws_s3_bucket_object.graphql"]
   function_name = "graphql_${var.name}"
-  role          = "${aws_iam_role.iam_graphql.id}"
+  role          = "${aws_iam_role.iam_graphql.arn}"
   handler       = "index.handler"
   runtime       = "nodejs6.10"
   timeout       = "300"
   memory_size   = "1536"
   s3_bucket     = "${var.site_url}"
   s3_key        = "lambda/graphql/index.zip"
+  source_code_hash = "${base64sha256(file("../build/api/index.zip"))}"
 
   environment {
     variables = {
